@@ -16,9 +16,5 @@
 <img src="https://github-profile-trophy.vercel.app/?username=IRaZeRI&theme=juicyfresh&no-bg=true" />
 
 
-
-[![github stats](https://github-readme-stats.vercel.app/api?username=IRaZeRI&theme=material-palenight&count_private=true)
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=IRaZeRI)](https://github.com/anuraghazra/github-readme-stats)
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=IRaZerI&hide=contribs,prs)
-<img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api?username=IRaZeRI&show_icons=true&theme=algolia&include_all_commits=true&count_private=true"/>
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Irazeri&count_private=true)
 
