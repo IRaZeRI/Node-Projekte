@@ -4,9 +4,3 @@
   <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=IRaZeRI&layout=compact&langs_count=8&theme=synthwave"/>
 </a>
 </p>
-
-<img src="https://github-profile-trophy.vercel.app/?username=IRaZeRI&theme=juicyfresh&no-bg=true" />
-
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=irazeri&count_private=true&show_icons=true&theme=synthwave)](https://github.com/anuraghazra/github-readme-stats)
-
-
