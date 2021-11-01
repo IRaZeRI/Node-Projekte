@@ -1,0 +1,81 @@
+<?php 
+session_start();
+require_once("inc/config.inc.php");
+require_once("inc/functions.inc.php");
+if(!isset($_GET['userid']) || !isset($_GET['code'])) {
+	error("Unfortunately, no code was sent to reset your password when you visited this website.");
+}
+
+$showForm = true; 
+$userid = $_GET['userid'];
+$code = $_GET['code'];
+ 
+$statement = $pdo->prepare("SELECT * FROM users WHERE id = :userid");
+$result = $statement->execute(array('userid' => $userid));
+$user = $statement->fetch();
+ 
+if($user === null || $user['passwordcode'] === null) {
+	$errmsg = "The user was not found or has not requested a new password.";
+}
+ 
+if($user['passwordcode_time'] === null || strtotime($user['passwordcode_time']) < (time()-24*3600) ) {
+	$errmsg = "Sorry, your code has expired. Please use the forgot password function again.";
+}
+
+if(sha1($code) != $user['passwordcode']) {
+	$errmsg = "The code passed was invalid. Make sure you got the exact link in the url. If you have used the forgotten password function several times, call up the link in the latest email.";
+}
+ 
+if(isset($_GET['send'])) {
+	$password = $_POST['password'];
+	$password2 = $_POST['password2'];
+	
+	if(strlen($password) == 0) {
+		$errmsg =  "Enter Password.";
+	} elseif(strlen(trim($_POST["password"])) < 6){
+		$errmsg =  "Password needs 6 Chars or more.";
+    } elseif($password != $password2) {
+		$errmsg =  "The passwords doesnt match.";
+	} else {
+		$passwordhash = password_hash($password, PASSWORD_DEFAULT);
+		$statement = $pdo->prepare("UPDATE users SET password = :passwordhash, passwordcode = NULL, passwordcode_time = NULL WHERE id = :userid");
+		$result = $statement->execute(array('passwordhash' => $passwordhash, 'userid'=> $userid ));
+		
+		if($result) {
+			$msg = "Your password was successfully changed.";
+			$showForm = false;
+		}
+	}
+}
+
+include("templates/header2.inc.php");
+?>
+
+<div class="form-Bg">
+    <div class="form-header">
+        <a href="/"><h1>RaZingCode</h1></a>
+        <h2>CHANGE YOUR PASSWORD</h2>
+		<p style="color:red; text-align: center">
+		<?php 
+		if(isset($errmsg)) {
+			echo $errmsg;
+		} ?> </p><p style="color:#03d400"> <?php
+		if(isset($msg)) {
+			echo $msg;
+			echo '<div class="form-group"><input  class="btn btn-lg btn-primary btn-block" type="submit" value="Back to home" onclick="window.location: index.php"></div> ';	
+		} ?> </p>
+	</div>
+	<?php
+	if($showForm):
+	?>
+
+<form action="?send=1&amp;userid=<?php echo htmlentities($userid); ?>&amp;code=<?php echo htmlentities($code); ?>" method="post">
+<div class="form-group">
+<input type="password" id="password" name="password" class="form-control" placeholder="Enter the new Password" required><br>
+<input type="password" id="password2" name="password2" class="form-control" placeholder="Confirm Password" required><br>
+<input type="submit" value="Save" class="btn btn-lg btn-primary btn-block">
+</div> 
+</form>
+<?php 
+endif;
+?>
