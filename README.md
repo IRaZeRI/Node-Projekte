@@ -15,6 +15,6 @@
 
 <img src="https://github-profile-trophy.vercel.app/?username=IRaZeRI&theme=juicyfresh&no-bg=true" />
 
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=irazeri&count_private=true)](https://github.com/anuraghazra/github-readme-stats)
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Irazeri&count_private=true)
 
