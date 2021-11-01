@@ -1,0 +1,14 @@
+<% if(typeof errors!= 'undefined') { %>
+<%    errors.forEach(function(error){ %>
+<p style=" color:#ff0202"> <%= error.msg %></p>
+<%    })        %>
+<% } %>
+<% if(success_msg!= '') { %>
+    <p style=" color:#03d400"><%=success_msg %> </p>
+    <% } %>
+    <% if(error_msg != '') { %>
+      <p style=" color:#ff0202"><%= error_msg %> </p>
+      <% } %> 
+      <% if(error != '') { %>
+        <%= error %>
+      <% } %>
