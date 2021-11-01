@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh; X-UA-Compatible" content="IE=edge; 0;URL='https://localhost:443'"/>
+  <title>CodePen - Media Query Mario</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="css/mario.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!--
+
+Mario 3 remade with CSS animation and media queries – a remake of a demo I did a while back for a MDN Dev Derby.
+
+Best viewed if you have your CodePen code stacked on the sides, so you can expand the main window rather than your whole browser (controlled in bottom right of CodePen or at this link).
+
+Link to the original demo: https://hacks.mozilla.org/2012/11/the-making-of-a-hack-media-query-mario/
+
+and also an article about how the demo was made: https://hacks.mozilla.org/2012/11/the-making-of-a-hack-media-query-mario/
+
+----------------------------------------------
+
+By Ashley Nolan – https://ashleynolan.co.uk/
+
+-->
+
+<!-- Level Select Screen -->
+<div id="levelSelect">
+  <div class="imgWrapper">
+    <img class="levelSelect" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/level-select.png" />
+    <img class="marioFlat" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/mario-flat.png" />
+
+    <div id="textBox" class="textBox">
+      <h1>World 1</h1>
+      <h2 class="startText alpha">Resize codepen window to between 320 and 420 pixels width to start!</h2>
+      <a href="" class="btn startBtn">Start</a>
+    </div>
+  </div>
+</div>
+
+<!-- Main scene -->
+<div id="mainScene" class="main">
+
+  <p class="moveText alpha">Increase codepen window size slowly</p>
+
+  <div class="mario"></div>
+
+  <div class="goomba enemy1 enemy-dies"></div>
+
+  <div class="mushroom"></div>
+
+  <div class="piranha enemy2"></div>
+  <div class="fireball"></div>
+
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/q-box.gif" class="qbox qbox1" />
+  <div class="qbox-sprite qbox1"></div>
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/q-box.gif" class="qbox qbox2" />
+  <div class="qbox-sprite qbox2"></div>
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/q-box.gif" class="qbox qbox3" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/q-box.gif" class="qbox qbox4" />
+  <div class="qbox-sprite qbox4"></div>
+
+  <div class="coin coin1"></div>
+  <div class="coin coin2"></div>
+  <div class="coin coin3"></div>
+
+
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/q-box.gif" class="qbox qbox5" />
+  <div class="qbox-sprite qbox5"></div>
+
+  <div class="goomba enemy3"></div>
+  <div class="turtle enemy4"></div>
+
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/q-box-side.gif" class="qbox qbox6" />
+  <div class="qbox-sprite qbox6"></div>
+
+  <div class="racoon-leaf"></div>
+
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/q-box.gif" class="qbox qbox7" />
+  <div class="qbox-sprite qbox7"></div>
+  <div class="coin coin4"></div>
+
+  <div class="goomba enemy5 enemy-dies"></div>
+  <div class="goomba enemy6 enemy-dies"></div>
+  <div class="goomba-winged enemy7"></div>
+
+  <div class="coin coin-full coin5"></div>
+  <div class="coin coin-full coin6"></div>
+  <div class="coin coin-full coin7"></div>
+  <div class="coin coin-full coin8"></div>
+</div>
+<!-- partial -->
+  <script  src="js/mario.js"></script>
+
+</body>
+</html>

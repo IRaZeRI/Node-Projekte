@@ -1,0 +1,1880 @@
+@charset "UTF-8";
+/* Font stuff */
+@font-face {
+  font-family: "acknowledge_tt_brkregular";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/acknowtt-webfont.eot");
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/acknowtt-webfont.eot?#iefix") format("embedded-opentype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/acknowtt-webfont.woff") format("woff"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/acknowtt-webfont.ttf") format("truetype"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/acknowtt-webfont.svg#acknowledge_tt_brkregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Some overall body styling */
+html,
+body,
+.main {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Font styling */
+h1,
+h2 {
+  margin: 0;
+  font-family: inherit;
+  font-weight: bold;
+  color: #404040;
+  text-rendering: optimizelegibility;
+}
+
+h1,
+.alpha {
+  color: #ffffff;
+  font-size: 10px;
+  line-height: 16px;
+  margin-top: 2%;
+  text-transform: uppercase;
+}
+@media (min-width: 320px) {
+  h1,
+.alpha {
+    font-size: 24px;
+    line-height: 20px;
+    margin-top: 5%;
+  }
+}
+@media (min-width: 600px) {
+  h1,
+.alpha {
+    font-size: 30px;
+    line-height: 32px;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #404040;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  background-color: #e6e6e6;
+  border-radius: 4px;
+}
+.btn:hover {
+  background-color: #e6e6e6;
+}
+
+#levelSelect {
+  overflow: hidden;
+  height: 100%;
+  line-height: 0;
+  background: #000;
+}
+
+.imgWrapper {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 998px;
+}
+
+#levelSelect.fadeScreen {
+  height: 0px;
+  transition: 1000ms linear;
+}
+
+.marioFlat {
+  position: absolute;
+  width: 8%;
+  top: 20%;
+  left: 8.5%;
+}
+
+.startScreen .marioFlat {
+  animation: flat-mario 1000ms 600ms linear;
+  animation-fill-mode: forwards;
+}
+
+.textBox,
+.moveText {
+  padding: 0 2%;
+  background: #9ce8f2;
+  border: 4px solid #000000;
+  font-family: "acknowledge_tt_brkregular";
+  letter-spacing: 1px;
+  text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, -2px -2px 0 #000000, 2px 2px 0 #000000, -2px 2px 0 #000000, 2px 2px 0 #000000, 2px -2px 0 #000000;
+}
+
+.textBox {
+  overflow: hidden;
+  position: absolute;
+  width: 60%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  margin: -25% 0 0 -30%;
+}
+
+.textBox.fade {
+  width: 0;
+  margin: 0;
+  height: 0;
+  border: 0;
+  transition: all 300ms linear;
+}
+
+.fade * {
+  display: none;
+}
+
+.startBtn {
+  border: 1px solid #000000;
+  background: #ffffff;
+  text-transform: uppercase;
+  font-family: "acknowledge_tt_brkregular";
+  color: #000000;
+  margin-top: 10%;
+  font-size: 28px;
+}
+
+.moveText {
+  display: none;
+  position: fixed;
+  right: 40px;
+  top: 10px;
+  padding: 10px 20px 20px;
+  width: 240px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 26px;
+}
+.moveText:after {
+  content: "";
+  width: 0;
+  position: absolute;
+  right: -40px;
+  top: -20px;
+  border-left: 40px solid #000000;
+  border-top: 75px solid transparent;
+  border-bottom: 75px solid transparent;
+}
+
+/* ==========================================================================
+   Setting up the characteres from the sprites
+   ========================================================================== */
+.mario,
+.goomba,
+.goomba-winged,
+.turtle,
+.mushroom,
+.piranha,
+.fireball,
+.qbox-sprite,
+.coin,
+.racoon-leaf {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/mario-sprite.png") no-repeat;
+}
+
+.main {
+  position: absolute;
+  width: 6000px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/12207/bg-level.png") no-repeat 0 bottom;
+}
+
+.mario {
+  width: 50px;
+  height: 58px;
+  position: absolute;
+  z-index: 10;
+  bottom: 29px;
+  left: 10px;
+  transform: scalex(-1);
+  background-position: 0 top;
+}
+
+.goomba {
+  width: 34px;
+  height: 32px;
+  position: absolute;
+  background-position: -2px -696px;
+}
+
+.goomba.dead {
+  background-position: -46px -696px;
+}
+
+.enemy1 {
+  bottom: 37px;
+  left: 450px;
+}
+
+.enemy3 {
+  bottom: 37px;
+  left: 1200px;
+}
+
+.enemy5 {
+  bottom: 74px;
+  left: 1920px;
+}
+
+.enemy6 {
+  bottom: 74px;
+  left: 2010px;
+}
+
+.turtle {
+  width: 34px;
+  height: 56px;
+  position: absolute;
+  z-index: 10;
+  background-position: -256px -703px;
+}
+
+.enemy4 {
+  transform: scalex(-1);
+  bottom: 109px;
+  left: 1336px;
+}
+
+.goomba-winged {
+  width: 42px;
+  height: 38px;
+  position: absolute;
+  background-position: -492px -720px;
+}
+
+.enemy7 {
+  bottom: 74px;
+  left: 2130px;
+}
+
+.mushroom {
+  width: 41px;
+  height: 41px;
+  position: absolute;
+  bottom: 254px;
+  left: 549px;
+  background-position: -200px -700px;
+  zoom: 1;
+  filter: alpha(opacity=65);
+  opacity: 0;
+}
+
+.piranha {
+  width: 37px;
+  height: 74px;
+  position: absolute;
+  background-position: -108px -690px;
+}
+
+.enemy2 {
+  bottom: 146px;
+  left: 829px;
+}
+
+.fireball {
+  width: 18px;
+  height: 20px;
+  position: absolute;
+  bottom: 206px;
+  left: 810px;
+  background-position: -164px -701px;
+}
+
+.qbox {
+  position: absolute;
+  z-index: 3;
+}
+
+.qbox-sprite {
+  position: absolute;
+  z-index: 4;
+  width: 37px;
+  height: 56px;
+  background-position: -1px -745px;
+  zoom: 1;
+  filter: alpha(opacity=65);
+  opacity: 0;
+}
+
+.qbox1 {
+  bottom: 128px;
+  left: 405px;
+}
+
+.qbox2 {
+  bottom: 128px;
+  left: 442px;
+}
+
+.qbox3 {
+  bottom: 239px;
+  left: 516px;
+}
+
+.qbox4 {
+  bottom: 239px;
+  left: 553px;
+}
+
+.qbox5 {
+  bottom: 202px;
+  left: 958px;
+}
+
+.qbox6 {
+  bottom: 74px;
+  left: 1491px;
+}
+
+.qbox-sprite.qbox6 {
+  width: 66px;
+  height: 37px;
+  background-position: -2px -812px;
+}
+
+.qbox7 {
+  bottom: 128px;
+  left: 1622px;
+}
+
+.coin {
+  position: absolute;
+  z-index: 2;
+  background-position: -48px -745px;
+  width: 32px;
+  height: 37px;
+  zoom: 1;
+  filter: alpha(opacity=65);
+  opacity: 0;
+  transform: scalex(0.25);
+}
+
+.coin-full {
+  zoom: 1;
+  filter: alpha(opacity=65);
+  opacity: 1;
+  transform: scalex(1);
+}
+
+.coin1 {
+  left: 408px;
+  bottom: 182px;
+}
+
+.coin2 {
+  left: 440px;
+  bottom: 182px;
+}
+
+.coin3 {
+  left: 960px;
+  bottom: 262px;
+}
+
+.coin4 {
+  left: 1624px;
+  bottom: 184px;
+}
+
+.coin5 {
+  left: 2474px;
+  bottom: 224px;
+}
+
+.coin6 {
+  left: 2554px;
+  bottom: 294px;
+}
+
+.coin7 {
+  left: 2634px;
+  bottom: 364px;
+}
+
+.coin8 {
+  left: 2718px;
+  bottom: 434px;
+}
+
+.racoon-leaf {
+  position: absolute;
+  left: 1510px;
+  bottom: 78px;
+  background-position: -201px -758px;
+  width: 36px;
+  height: 32px;
+}
+
+/* ==========================================================================
+   Firing off the animations as the media queries take effect
+   ========================================================================== */
+@media screen and (min-width: 320px) {
+  .startAnim.main {
+    animation-name: stagemove-first;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 1.2s;
+  }
+  .startAnim .coin1 {
+    animation-name: coinup;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-delay: 1650ms;
+  }
+  .startAnim .coin2 {
+    animation-name: coinup;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-delay: 1850ms;
+  }
+  .startAnim .mario {
+    animation-name: mario-run-first, mario-sprite-walk, mario-jump-first, mario-sprite-jump;
+    animation-duration: 1000ms, 200ms, 600ms, 600ms;
+    animation-timing-function: ease-in, step-start, linear, step-end;
+    animation-iteration-count: 1, 5, 1, 1;
+    animation-delay: 500ms, 500ms, 1501ms, 1501ms;
+  }
+  .startAnim .enemy1 {
+    animation-name: enemy1, goomba-dead;
+    animation-duration: 1750ms, 800ms;
+    animation-timing-function: ease-in-out, step-start;
+    animation-iteration-count: 1, 1;
+    animation-delay: 0s, 1750ms;
+  }
+  .startAnim .qbox1 {
+    animation: qbox-up-lower 100ms 1650ms linear;
+  }
+  .startAnim .qbox2 {
+    animation: qbox-up-lower 80ms 1950ms linear;
+  }
+}
+@media screen and (max-width: 320px), (min-width: 440px) {
+  .startBtn {
+    display: none;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 440px) {
+  .startText {
+    display: none;
+  }
+}
+@media screen and (min-width: 440px) {
+  .startAnim.main {
+    left: -180px;
+    animation-name: stagemove-second;
+    animation-duration: 1.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+  }
+  .startAnim .mario {
+    background-position: 0 top;
+    animation-name: mario-jump-second, mario-sprite-jump-2, mario-grow;
+    animation-duration: 1400ms, 1400ms, 180ms;
+    animation-timing-function: linear, step-end, step-end;
+    animation-iteration-count: 1, 1, 5;
+    animation-delay: 0s, 0s, 1400ms;
+  }
+  .startAnim .mushroom {
+    animation: mushroom-reveal 600ms 800ms linear;
+  }
+  .startAnim .qbox4 {
+    animation: qbox-up-qbox4 80ms 600ms linear;
+  }
+}
+@media screen and (min-width: 540px) {
+  .startAnim.main {
+    left: -265px;
+    animation-name: stagemove-third;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+  }
+  .startAnim .mario {
+    background-position: -140px -181px;
+    animation-name: mario-run-second, mario-jump-third, mario-jump-qbox, mario-run-sprite-second;
+    animation-duration: 400ms, 800ms, 400ms, 1700ms;
+    animation-timing-function: linear, linear, linear, step-end;
+    animation-iteration-count: 1, 1, 1, 1;
+    animation-delay: 0s, 500ms, 1300ms, 0s;
+  }
+  .startAnim .qbox5 {
+    animation: qbox-up-qbox5 80ms 1400ms linear;
+  }
+  .startAnim .coin3 {
+    animation-name: coinup-two;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-delay: 1400ms;
+  }
+  .startAnim .fireball {
+    animation-name: fireball-rotate, fireball-move;
+    animation-duration: 800ms, 5000ms;
+    animation-timing-function: linear, linear;
+    animation-iteration-count: infinite, 1;
+  }
+  .startAnim .piranha {
+    animation-name: piranha-move;
+    animation-duration: 1000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 2000ms;
+  }
+}
+@media screen and (min-width: 640px) {
+  .startAnim.main {
+    left: -650px;
+    animation-name: stagemove-fourth;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+  }
+  .startAnim .enemy3 {
+    animation-name: enemy-third;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+  }
+  .startAnim .mario {
+    background-position: -205px -181px;
+    animation-name: mario-jump-fourth, mario-sprite-jump-fourth, mario-turtle-hit, mario-sprite-turtle-hit;
+    animation-duration: 700ms, 700ms, 1s, 1s;
+    animation-timing-function: linear, step-end, linear, step-end;
+    animation-iteration-count: 1, 1, 1, 1;
+    animation-delay: 0s, 0s, 700ms, 701ms;
+  }
+  .startAnim .enemy4 {
+    animation-name: turtle-walk, turtle-sprite;
+    animation-duration: 1.3s, 1.3s;
+    animation-timing-function: linear, step-end;
+    animation-iteration-count: 1, 1;
+    animation-delay: 0s, 0s;
+  }
+}
+@media screen and (min-width: 760px) {
+  .startAnim.main {
+    left: -950px;
+    animation-name: stagemove-fifth;
+    animation-duration: 400ms;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 1.5s;
+  }
+  .startAnim .mario {
+    background-position: -140px -181px;
+    animation-name: mario-kick-shell, mario-sprite-kick-shell, mario-jump-fifth, mario-racoon-change, mario-sprite-jump-fifth;
+    animation-duration: 100ms, 100ms, 600ms, 1s, 1.8s;
+    animation-timing-function: linear, step-end, linear, linear, step-end;
+    animation-iteration-count: 1, 1, 1, 1, 1;
+    animation-delay: 0s, 0s, 100ms, 800ms, 100ms;
+  }
+  .startAnim .enemy3 {
+    animation-name: enemy-third-continued;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 0ms;
+  }
+  .startAnim .enemy4 {
+    background-position: -314px -704px;
+    left: 1339px;
+    bottom: 109px;
+    animation-name: turtle-hit-qbox, turtle-rotate;
+    animation-duration: 2s, 200ms;
+    animation-timing-function: linear, step-end;
+    animation-iteration-count: 1, infinite;
+    animation-delay: 100ms, 100ms;
+  }
+  .startAnim .qbox6 {
+    animation: qbox-hit-qbox6 80ms 500ms linear;
+  }
+  .startAnim .racoon-leaf {
+    animation: leaf-up 200ms 500ms ease-out;
+  }
+}
+@media screen and (min-width: 840px) {
+  .startAnim.main {
+    left: -1050px;
+    animation-name: stagemove-sixth;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+  }
+  .startAnim .mario {
+    background-position: -131px -528px;
+    animation-name: mario-jump-sixth, mario-jump-seventh, mario-jump-seventh-sprite;
+    animation-duration: 500ms, 2s, 2s;
+    animation-timing-function: linear, linear, step-end;
+    animation-iteration-count: 1, 1, 1;
+    animation-delay: 0s, 500ms, 500ms;
+  }
+  .startAnim .qbox7 {
+    animation: qbox-up-qbox7 80ms 200ms linear;
+  }
+  .startAnim .coin4 {
+    animation-name: coinup-four;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-delay: 200ms;
+  }
+  .startAnim .enemy5 {
+    animation-name: enemy-fifth, goomba-dead;
+    animation-duration: 1000ms, 800ms;
+    animation-timing-function: linear, step-end;
+    animation-iteration-count: 1, 1;
+    animation-delay: 0s, 1000ms;
+  }
+  .startAnim .enemy6 {
+    animation-name: enemy-sixth, goomba-dead;
+    animation-duration: 1400ms, 800ms;
+    animation-timing-function: linear, step-end;
+    animation-iteration-count: 1, 1;
+    animation-delay: 0s, 1400ms;
+  }
+  .startAnim .enemy7 {
+    animation-name: enemy-seventh, enemy-seventh-sprite, enemy-seventh-dead;
+    animation-duration: 2600ms, 2600ms, 700ms;
+    animation-timing-function: linear, step-end, linear;
+    animation-iteration-count: 1, 1, 1;
+    animation-delay: 0s, 0s, 2500ms;
+  }
+}
+@media screen and (min-width: 1240px) {
+  .startAnim .mario {
+    background-position: -131px -528px;
+    animation-name: mario-sprint, mario-sprite-sprint, mario-sprite-sprint-trans, mario-sprint2, mario-sprite-sprint2, mario-flight-sprite, mario-flight, mario-in-flight;
+    animation-duration: 2s, 200ms, 400ms, 1s, 200ms, 200ms, 4s, 200ms;
+    animation-timing-function: linear, step-end, step-end, linear, step-end, step-end, linear, step-end;
+    animation-iteration-count: 1, 7, 1, 1, 3, 6, 1, infinite;
+    animation-delay: 0s, 0s, 1200ms, 2000ms, 1600ms, 2200ms, 3000ms, 3000ms;
+  }
+  .startAnim .coin5 {
+    animation: coin-disappear 80ms 3700ms step-end;
+  }
+  .startAnim .coin6 {
+    animation: coin-disappear 80ms 4050ms step-end;
+  }
+  .startAnim .coin7 {
+    animation: coin-disappear 80ms 4400ms step-end;
+  }
+  .startAnim .coin8 {
+    animation: coin-disappear 80ms 4750ms step-end;
+  }
+}
+/* Makes sure the sprites are triggered in the right way */
+.startAnim.main, .startAnim .mario, .startAnim .goomba, .startAnim .goomba-winged, .startAnim .turtle, .startAnim .piranha, .startAnim .fireball, .startAnim .mushroom, .startAnim .coin, .startAnim .racoon-leaf, .startAnim .qbox-sprite {
+  animation-fill-mode: forwards;
+}
+
+/* ==========================================================================
+   The actual animation setup – theres quite a few of these
+   ========================================================================== */
+@keyframes flat-mario {
+  0% {
+    left: 8.5%;
+  }
+  20% {
+    left: 22.5%;
+    top: 20%;
+  }
+  35% {
+    left: 22.5%;
+    top: 20%;
+  }
+  55% {
+    left: 22.5%;
+    top: 1%;
+  }
+  100% {
+    left: 22.5%;
+    top: 1%;
+  }
+}
+@keyframes stagemove-first {
+  0% {
+    left: 0;
+  }
+  4% {
+    left: -80px;
+  }
+  8% {
+    left: -150px;
+  }
+  10% {
+    left: -180px;
+  }
+  100% {
+    left: -180px;
+  }
+}
+@keyframes mario-sprite-walk {
+  0% {
+    background-position: 0 top;
+  }
+  50% {
+    background-position: -63px top;
+  }
+}
+@keyframes mario-sprite-walk-large {
+  0% {
+    background-position: 0 -179px;
+  }
+  50% {
+    background-position: -140px -179px;
+  }
+  100% {
+    background-position: -140px -179px;
+  }
+}
+@keyframes mario-sprite-jump {
+  0% {
+    background-position: -198px top;
+  }
+  30% {
+    background-position: -198px top;
+    transform: scalex(-1);
+  }
+  31% {
+    background-position: -198px top;
+    transform: scalex(1);
+  }
+  100% {
+    background-position: 0 top;
+    transform: scalex(-1);
+  }
+}
+@keyframes mario-run-first {
+  0% {
+    left: 10px;
+  }
+  100% {
+    left: 318px;
+  }
+}
+@keyframes mario-jump-first {
+  0% {
+    bottom: 30px;
+    left: 330px;
+  }
+  30% {
+    bottom: 110px;
+    left: 390px;
+  }
+  50% {
+    bottom: 43px;
+    left: 400px;
+  }
+  75% {
+    bottom: 110px;
+    left: 440px;
+  }
+  100% {
+    bottom: 28px;
+    left: 445px;
+  }
+}
+@keyframes qbox-up-lower {
+  0% {
+    bottom: 128px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+  50% {
+    bottom: 142px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  100% {
+    bottom: 128px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+}
+@keyframes coinup {
+  0% {
+    bottom: 182px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+  20% {
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  50% {
+    bottom: 280px;
+  }
+  80% {
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  100% {
+    bottom: 182px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+}
+@keyframes enemy1 {
+  0% {
+    left: 500px;
+  }
+  100% {
+    left: 410px;
+  }
+}
+@keyframes goomba-dead {
+  0% {
+    background-position: -46px -696px;
+  }
+  50% {
+    background-position: -46px -696px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  99% {
+    background-position: -46px -696px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  100% {
+    background-position: -46px -696px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+}
+@keyframes stagemove-second {
+  0% {
+    left: -180px;
+  }
+  50% {
+    left: -250px;
+  }
+  60% {
+    left: -265px;
+  }
+  100% {
+    left: -265px;
+  }
+}
+@keyframes mario-jump-second {
+  0% {
+    bottom: 30px;
+    left: 445px;
+  }
+  20% {
+    bottom: 171px;
+    left: 520px;
+  }
+  30% {
+    bottom: 138px;
+    left: 544px;
+  }
+  32% {
+    bottom: 138px;
+    left: 544px;
+  }
+  47% {
+    bottom: 228px;
+    left: 550px;
+  }
+  62% {
+    bottom: 138px;
+    left: 550px;
+  }
+  64% {
+    bottom: 138px;
+    left: 550px;
+  }
+  76% {
+    bottom: 233px;
+    left: 580px;
+  }
+  80% {
+    bottom: 253px;
+    left: 590px;
+  }
+  84% {
+    bottom: 273px;
+    left: 585px;
+  }
+  90% {
+    bottom: 293px;
+    left: 570px;
+  }
+  100% {
+    bottom: 293px;
+    left: 570px;
+  }
+}
+@keyframes mario-sprite-jump-2 {
+  0% {
+    background-position: -198px top;
+  }
+  30% {
+    background-position: 0 top;
+  }
+  33% {
+    background-position: -198px top;
+  }
+  62% {
+    background-position: 0 top;
+  }
+  64% {
+    background-position: -198px top;
+  }
+  100% {
+    background-position: 0 top;
+  }
+}
+@keyframes mario-grow {
+  0% {
+    background-position: 0 top;
+  }
+  33% {
+    background-position: 0 -179px;
+  }
+  66% {
+    background-position: 0 top;
+  }
+  100% {
+    background-position: 0 -179px;
+  }
+}
+@keyframes mushroom-reveal {
+  0% {
+    bottom: 254px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+  18% {
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  71% {
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  72% {
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+  100% {
+    bottom: 294px;
+  }
+}
+@keyframes qbox-up-qbox4 {
+  0% {
+    bottom: 239px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+  50% {
+    bottom: 253px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  100% {
+    bottom: 239px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+}
+@keyframes stagemove-third {
+  0% {
+    left: -265px;
+  }
+  25% {
+    left: -360px;
+  }
+  60% {
+    left: -500px;
+  }
+  100% {
+    left: -650px;
+  }
+}
+@keyframes mario-run-second {
+  0% {
+    left: 570px;
+    bottom: 293px;
+  }
+  40% {
+    left: 604px;
+    bottom: 253px;
+  }
+  80% {
+    left: 616px;
+    bottom: 220px;
+  }
+  100% {
+    left: 646px;
+    bottom: 220px;
+  }
+}
+@keyframes mario-run-sprite-second {
+  0% {
+    background-position: -140px -181px;
+  }
+  30% {
+    background-position: -140px -181px;
+  }
+  31% {
+    background-position: 0 -179px;
+  }
+  60% {
+    background-position: -205px -181px;
+  }
+  80% {
+    background-position: -74px -179px;
+  }
+  85% {
+    background-position: -140px -181px;
+  }
+  90% {
+    background-position: -74px -179px;
+  }
+  95% {
+    background-position: -140px -181px;
+  }
+  100% {
+    background-position: 0 -179px;
+  }
+}
+@keyframes mario-jump-third {
+  0% {
+    left: 646px;
+    bottom: 220px;
+  }
+  30% {
+    left: 730px;
+    bottom: 310px;
+  }
+  40% {
+    left: 760px;
+    bottom: 320px;
+  }
+  50% {
+    left: 800px;
+    bottom: 300px;
+  }
+  100% {
+    left: 910px;
+    bottom: 145px;
+  }
+}
+@keyframes mario-jump-qbox {
+  0% {
+    left: 910px;
+    bottom: 145px;
+  }
+  10% {
+    left: 930px;
+    bottom: 145px;
+  }
+  30% {
+    left: 955px;
+    bottom: 170px;
+  }
+  50% {
+    left: 970px;
+    bottom: 145px;
+  }
+  100% {
+    left: 1040px;
+    bottom: 145px;
+  }
+}
+@keyframes qbox-up-qbox5 {
+  0% {
+    bottom: 202px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+  50% {
+    bottom: 216px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  100% {
+    bottom: 202px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+}
+@keyframes coinup-two {
+  0% {
+    bottom: 262px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+  20% {
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  50% {
+    bottom: 360px;
+  }
+  80% {
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  100% {
+    bottom: 262px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+}
+@keyframes fireball-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fireball-move {
+  0% {
+    bottom: 206px;
+    left: 810px;
+  }
+  100% {
+    bottom: 550px;
+    left: 0px;
+  }
+}
+@keyframes piranha-move {
+  from {
+    height: 74px;
+  }
+  to {
+    height: 0px;
+  }
+}
+@keyframes stagemove-fourth {
+  0% {
+    left: -650px;
+  }
+  100% {
+    left: -950px;
+  }
+}
+@keyframes enemy-third {
+  from {
+    left: 1200px;
+  }
+  to {
+    left: 1100px;
+  }
+}
+@keyframes mario-jump-fourth {
+  0% {
+    left: 1040px;
+    bottom: 145px;
+  }
+  65% {
+    left: 1175px;
+    bottom: 304px;
+  }
+  80% {
+    left: 1215px;
+    bottom: 324px;
+  }
+  85% {
+    left: 1225px;
+    bottom: 316px;
+  }
+  100% {
+    left: 1255px;
+    bottom: 292px;
+  }
+}
+@keyframes mario-sprite-jump-fourth {
+  0% {
+    background-position: -205px -181px;
+  }
+  80% {
+    background-position: -140px -181px;
+  }
+  100% {
+    background-position: -140px -181px;
+  }
+}
+@keyframes mario-turtle-hit {
+  0% {
+    left: 1255px;
+    bottom: 292px;
+  }
+  20% {
+    left: 1296px;
+    bottom: 292px;
+  }
+  40% {
+    left: 1342px;
+    bottom: 212px;
+  }
+  50% {
+    left: 1327px;
+    bottom: 150px;
+  }
+  63% {
+    left: 1306px;
+    bottom: 190px;
+  }
+  88% {
+    left: 1262px;
+    bottom: 110px;
+  }
+  100% {
+    left: 1267px;
+    bottom: 110px;
+  }
+}
+@keyframes mario-sprite-turtle-hit {
+  0% {
+    background-position: -140px -181px;
+  }
+  5% {
+    background-position: -74px -179px;
+  }
+  10% {
+    background-position: -140px -181px;
+  }
+  15% {
+    background-position: -74px -179px;
+  }
+  20% {
+    background-position: -140px -181px;
+  }
+  40% {
+    background-position: -140px -181px;
+    transform: scalex(1);
+  }
+  54% {
+    background-position: -205px -181px;
+  }
+  65% {
+    background-position: -140px -181px;
+  }
+  90% {
+    background-position: -336px -179px;
+  }
+  97% {
+    background-position: -74px -179px;
+    transform: scalex(-1);
+  }
+  100% {
+    background-position: -140px -181px;
+    transform: scalex(-1);
+  }
+}
+@keyframes turtle-walk {
+  0% {
+    left: 1346px;
+  }
+  50% {
+    left: 1376px;
+  }
+  100% {
+    left: 1340px;
+  }
+}
+@keyframes turtle-sprite {
+  0% {
+    background-position: -256px -703px;
+  }
+  60% {
+    background-position: -256px -703px;
+    transform: scalex(1);
+  }
+  94% {
+    background-position: -256px -703px;
+    transform: scalex(1);
+  }
+  95% {
+    background-position: -314px -704px;
+    transform: scalex(1);
+  }
+  100% {
+    background-position: -314px -704px;
+    transform: scalex(1);
+  }
+}
+@keyframes stagemove-fifth {
+  0% {
+    left: -950px;
+  }
+  100% {
+    left: -1050px;
+  }
+}
+@keyframes mario-kick-shell {
+  0% {
+    left: 1267px;
+    bottom: 110px;
+  }
+  100% {
+    left: 1290px;
+    bottom: 110px;
+  }
+}
+@keyframes mario-sprite-kick-shell {
+  0% {
+    background-position: -140px -181px;
+  }
+  10% {
+    background-position: -74px -179px;
+  }
+  20% {
+    background-position: -140px -181px;
+  }
+  100% {
+    background-position: -395px -179px;
+  }
+}
+@keyframes mario-jump-fifth {
+  0% {
+    left: 1290px;
+    bottom: 110px;
+  }
+  35% {
+    left: 1360px;
+    bottom: 146px;
+  }
+  70% {
+    left: 1450px;
+    bottom: 206px;
+  }
+  100% {
+    left: 1472px;
+    bottom: 186px;
+  }
+}
+@keyframes mario-racoon-change {
+  0% {
+    left: 1472px;
+    bottom: 186px;
+  }
+  50% {
+    left: 1472px;
+    bottom: 186px;
+  }
+  75% {
+    left: 1532px;
+    bottom: 130px;
+  }
+  100% {
+    left: 1566px;
+    bottom: 72px;
+  }
+}
+@keyframes mario-sprite-jump-fifth {
+  0% {
+    background-position: -395px -179px;
+  }
+  5% {
+    background-position: -205px -181px;
+  }
+  25% {
+    background-position: -140px -181px;
+  }
+  35% {
+    background-position: -604px -266px;
+  }
+  45% {
+    background-position: -663px -266px;
+  }
+  60% {
+    background-position: -733px -266px;
+  }
+  70% {
+    background-position: -131px -528px;
+  }
+  100% {
+    background-position: -131px -528px;
+  }
+}
+@keyframes turtle-rotate {
+  0% {
+    background-position: -314px -704px;
+  }
+  33% {
+    background-position: -375px -704px;
+  }
+  66% {
+    background-position: -431px -704px;
+  }
+  100% {
+    background-position: -431px -704px;
+  }
+}
+@keyframes turtle-hit-qbox {
+  0% {
+    left: 1340px;
+    bottom: 109px;
+  }
+  10% {
+    left: 1390px;
+    bottom: 109px;
+  }
+  20% {
+    left: 1483px;
+    bottom: 72px;
+  }
+  35% {
+    left: 1400px;
+    bottom: 72px;
+  }
+  50% {
+    left: 1310px;
+    bottom: 36px;
+  }
+  100% {
+    left: 1060px;
+    bottom: 36px;
+  }
+}
+@keyframes enemy-third-continued {
+  from {
+    left: 1100px;
+  }
+  to {
+    left: 980px;
+  }
+}
+@keyframes qbox-hit-qbox6 {
+  0% {
+    left: 1491px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+  50% {
+    left: 1507px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  100% {
+    left: 1491px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+}
+@keyframes leaf-up {
+  0% {
+    bottom: 78px;
+  }
+  99% {
+    bottom: 178px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  100% {
+    bottom: 178px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+}
+@keyframes stagemove-sixth {
+  0% {
+    left: -1050px;
+  }
+  100% {
+    left: -1350px;
+  }
+}
+@keyframes mario-jump-sixth {
+  0% {
+    left: 1566px;
+    bottom: 72px;
+  }
+  10% {
+    left: 1576px;
+    bottom: 72px;
+  }
+  40% {
+    left: 1610px;
+    bottom: 90px;
+  }
+  70% {
+    left: 1640px;
+    bottom: 72px;
+  }
+  100% {
+    left: 1680px;
+    bottom: 72px;
+  }
+}
+@keyframes mario-jump-seventh {
+  0% {
+    left: 1680px;
+    bottom: 72px;
+  }
+  15% {
+    left: 1790px;
+    bottom: 172px;
+  }
+  25% {
+    left: 1840px;
+    bottom: 100px;
+  }
+  34% {
+    left: 1890px;
+    bottom: 160px;
+  }
+  45% {
+    left: 1930px;
+    bottom: 100px;
+  }
+  60% {
+    left: 2030px;
+    bottom: 230px;
+  }
+  70% {
+    left: 2080px;
+    bottom: 180px;
+  }
+  80% {
+    left: 2100px;
+    bottom: 210px;
+  }
+  100% {
+    left: 2088px;
+    bottom: 72px;
+  }
+}
+@keyframes mario-jump-seventh-sprite {
+  0% {
+    background-position: -196px -528px;
+  }
+  15% {
+    background-position: -131px -528px;
+  }
+  25% {
+    background-position: -196px -528px;
+  }
+  34% {
+    background-position: -131px -528px;
+  }
+  45% {
+    background-position: -196px -528px;
+  }
+  60% {
+    background-position: -131px -528px;
+  }
+  80% {
+    background-position: -131px -528px;
+    transform: scalex(1);
+  }
+  96% {
+    background-position: -264px -539px;
+    transform: scalex(-1);
+  }
+  97% {
+    background-position: -917px -615px;
+    transform: scalex(-1);
+  }
+  100% {
+    background-position: -131px -528px;
+    transform: scalex(1);
+  }
+}
+@keyframes qbox-up-qbox7 {
+  0% {
+    bottom: 128px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+  50% {
+    bottom: 142px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  100% {
+    bottom: 128px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+}
+@keyframes coinup-four {
+  0% {
+    bottom: 184px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+  20% {
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  50% {
+    bottom: 282px;
+  }
+  80% {
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 1;
+  }
+  100% {
+    bottom: 184px;
+    zoom: 1;
+    filter: alpha(opacity=65);
+    opacity: 0;
+  }
+}
+@keyframes enemy-fifth {
+  0% {
+    left: 1920px;
+  }
+  100% {
+    left: 1860px;
+  }
+}
+@keyframes enemy-sixth {
+  0% {
+    left: 2010px;
+  }
+  100% {
+    left: 1940px;
+  }
+}
+@keyframes enemy-seventh {
+  0% {
+    left: 2200px;
+    bottom: 74px;
+  }
+  40% {
+    left: 2130px;
+    bottom: 74px;
+  }
+  63% {
+    left: 2100px;
+    bottom: 144px;
+  }
+  73% {
+    left: 2090px;
+    bottom: 144px;
+  }
+  80% {
+    left: 2070px;
+    bottom: 68px;
+  }
+  100% {
+    left: 2060px;
+    bottom: 68px;
+  }
+}
+@keyframes enemy-seventh-sprite {
+  0% {
+    background-position: -492px -720px;
+  }
+  50% {
+    background-position: -492px -720px;
+  }
+  70% {
+    background-position: -2px -696px;
+  }
+  100% {
+    background-position: -2px -696px;
+    transform: rotate(180deg);
+  }
+}
+@keyframes enemy-seventh-dead {
+  0% {
+    left: 2060px;
+    bottom: 68px;
+  }
+  40% {
+    left: 2030px;
+    bottom: 178px;
+  }
+  100% {
+    left: 2000px;
+    bottom: -100px;
+  }
+}
+@keyframes mario-sprint {
+  0% {
+    left: 2088px;
+    bottom: 72px;
+  }
+  60% {
+    left: 1698px;
+    bottom: 72px;
+  }
+  65% {
+    left: 1688px;
+    bottom: 72px;
+  }
+  70% {
+    left: 1708px;
+    bottom: 72px;
+  }
+  90% {
+    left: 1808px;
+    bottom: 72px;
+  }
+  100% {
+    left: 1858px;
+    bottom: 72px;
+  }
+}
+@keyframes mario-sprite-sprint {
+  0% {
+    background-position: -131px -528px;
+    transform: scalex(1);
+  }
+  50% {
+    background-position: -68px -528px;
+    transform: scalex(1);
+  }
+  100% {
+    background-position: -68px -528px;
+    transform: scalex(1);
+  }
+}
+@keyframes mario-sprite-sprint-trans {
+  0% {
+    background-position: -336px -526px;
+    transform: scalex(1);
+  }
+  50% {
+    background-position: -131px -528px;
+    transform: scalex(-1);
+  }
+  55% {
+    background-position: -68px -528px;
+    transform: scalex(-1);
+  }
+  70% {
+    background-position: -131px -528px;
+    transform: scalex(-1);
+  }
+  85% {
+    background-position: -68px -528px;
+    transform: scalex(-1);
+  }
+  100% {
+    background-position: -131px -528px;
+    transform: scalex(-1);
+  }
+}
+@keyframes mario-sprint2 {
+  0% {
+    left: 1858px;
+    bottom: 72px;
+  }
+  100% {
+    left: 2258px;
+    bottom: 72px;
+  }
+}
+@keyframes mario-sprite-sprint2 {
+  0% {
+    background-position: -131px -528px;
+    transform: scalex(-1);
+  }
+  50% {
+    background-position: -68px -528px;
+    transform: scalex(-1);
+  }
+  100% {
+    background-position: -68px -528px;
+    transform: scalex(-1);
+  }
+}
+@keyframes mario-flight-sprite {
+  0% {
+    background-position: -113px -615px;
+    transform: scalex(-1);
+  }
+  50% {
+    background-position: -57px -615px;
+    transform: scalex(-1);
+  }
+  100% {
+    background-position: -113px -615px;
+    transform: scalex(-1);
+  }
+}
+@keyframes mario-flight {
+  0% {
+    left: 2258px;
+    bottom: 72px;
+  }
+  100% {
+    left: 3258px;
+    bottom: 902px;
+  }
+}
+@keyframes mario-in-flight {
+  0% {
+    background-position: -720px -615px;
+    transform: scalex(-1);
+  }
+  50% {
+    background-position: -786px -615px;
+    transform: scalex(-1);
+  }
+  100% {
+    background-position: -786px -615px;
+    transform: scalex(-1);
+  }
+}
+@keyframes coin-disappear {
+  0% {
+    background-position: 1000px 10000px;
+  }
+  100% {
+    background-position: 1000px 10000px;
+  }
+}

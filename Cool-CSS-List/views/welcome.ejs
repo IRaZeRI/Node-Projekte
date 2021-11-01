@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh; X-UA-Compatible" content="IE=edge; 0;URL='https://localhost:443'"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BeemerStreamer</title>
+    
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/list.css" rel="stylesheet">
+
+  </head>
+  <div id="header">
+    <nav class="navbar navbar-inverse navbar-static-top" style="background: linear-gradient(90deg, #ebaf61, #f0b103)">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/"><img src="/img/"></img></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav nav-tabs" role="tablist" style="float: right;">
+              <li role="presentation" style="background: #f3b96e; height: 3.5em" class="active"><a style=" color:black; z-index: 10;" href="/" aria-controls="home" role="tab" data-toggle="tab">MAIN</a></li>
+              <li role="presentation" style="background: #f3b96e; height: 3.5em"><a style="color:black; z-index: 10;" href="#list" aria-controls="home" role="tab" data-toggle="tab">BeemerListe</a></li>          
+            </ul>
+        </nav>
+      </div>
+<body style="margin-top: 5em; background-color: #ffdf4f ">
+
+  <div class="jumbotron"  style="background-color: transparent; margin-top:3em;">
+  <div class="container" style="z-index: 10;" >
+      <div class="container main-container" style="margin-bottom: 10em">
+        <div class="tab-content" >
+          <div role="tabpanel" class="tab-pane active" id="main" >
+            <h1 style="text-align: center">CSS Animations</h1>
+            <center>
+              <p disabled style="display: inline-block; font-size: 25px;">
+                <p disabled style="display: inline-block;">Eine Liste an CSS Animations.<br></p><br>
+                <div style="font-size: 28px" ><br></center>
+          <form action="" method="" class="form-horizontal">
+            <div class="form-group">
+                    <table id="myTable" class="list" border="1" width="150%" style="background: #f3b96e; font-weight: bold;float: left">
+                        <tr class="list">
+                            <th width="5%" class="list">#</th>
+                            <th class="list">Name</th>
+                            <th class="list">Typ</th>
+                            <th class="list">SHOW</th>
+                        </tr>
+                        <tr class="list">
+                          <td class="list"></td>
+                          <td class="list"></td>
+                          <td class="list"></td>
+                          <td class="list"><a href=""></a></td>
+                      </tr>
+                        <%
+                        if(userData.length!=0){
+                        var i=1;
+                        userData.forEach(function(data){
+                        %>
+                        <tr class="list" >
+                            <td class="list"><%=i; %></td>
+                            <td class="list"><%=data.name %></td>
+                            <td class="list"><%=data.type %></td>
+                            <td class="list"><a href="/<%=data.name%>">VIEW</a></td>
+                        </tr>
+                        <%  i++; }) 
+                      
+                        %>
+                        <% } else{ %>
+                            <tr>
+                                <td colspan="7">No Data Found</td>
+                            </tr>
+                        <% } %>
+                    </table>
+                
+            </div>        
+          </form>    
+        </div>
+
+        <script>
+          function sortTable() {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("myTable");
+            switching = true;
+            /*Make a loop that will continue until
+            no switching has been done:*/
+            while (switching) {
+              //start by saying: no switching is done:
+              switching = false;
+              rows = table.rows;
+              /*Loop through all table rows (except the
+              first, which contains table headers):*/
+              for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[0];
+                y = rows[i + 1].getElementsByTagName("TD")[0];
+                //check if the two rows should switch place:
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                  //if so, mark as a switch and break the loop:
+                  shouldSwitch = true;
+                  break;
+                }
+              }
+              if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+              }
+            }
+          }
+          </script>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+
+</html>

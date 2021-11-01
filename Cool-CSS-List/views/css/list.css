@@ -1,0 +1,485 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:content-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body
+{
+    color: black;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background-image: url("/inc/Waben.jpg");
+    background-repeat: repeat;
+}
+
+
+th.list, tr.list, td.list {
+    text-align: center;
+    height: 3vh
+}
+
+#header {
+    position:fixed;
+    left:0;
+    top:0;
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+#footer {
+    position:fixed;
+    left:0;
+    bottom:0;
+    margin:0;
+    padding:0;
+    width:50%;
+}
+#footer img {width:100%;}
+
+p {
+    color:black;
+    font-weight: bold;
+
+}
+
+.navbar {
+	margin-bottom: 0px;
+	
+}
+.navbar-inverse .navbar-brand {
+	font-size: 2em;
+	color: #fff;
+}
+
+
+.navbar-inverse .navbar-brand:hover {
+	color: #ccc;
+}
+
+
+.navbar-brand .logo {
+	color: black;
+}
+
+.main-container {
+	margin-top: 20px;
+  color: black;
+   z-index: 10;
+}
+
+.registration-form {
+	max-width: 450px;
+	margin: 0 auto;
+}
+
+.small-container-500 {
+	max-width: 500px;
+  	padding: 15px;
+  	margin: 0 auto;
+}
+
+.small-container-330 {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+
+.small-container .small-container-heading,
+.small-container .checkbox {
+  margin-bottom: 10px;
+}
+.small-container .checkbox {
+  font-weight: normal;
+}
+.small-container .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.small-container .form-control:focus {
+  z-index: ;
+}
+
+/* Signin */
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.login td {
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+.login {
+	color: #fff;
+}
+.form-Bg
+{
+    margin-bottom: 60px;
+    z-index: 15;
+    position: relative;
+    width: 340px;
+    padding: 40px;
+    overflow: hidden;
+}
+.form {
+    margin: 50px auto;
+    width: 300px;
+    padding: 30px 25px;
+    background: #3e4144;
+    color: rgb(90, 90, 90);
+    border: 2px solid black;
+    border-radius: 5em;
+}
+.form-header
+{
+    margin: 0 0 40px;
+    text-align: center;
+}
+.form-header h1
+{
+    color: black;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+.form-header h2
+{
+    color: black;
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+.form-header p
+{
+    color: rgba(255,255,255, 0.61);
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+.form-group
+{
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin: 0 0 20px;
+}
+.form-group input
+{
+    outline: none;
+    display: block;
+    background: #ffdb8d;
+    width: 100%;
+    border: 0;
+    border-radius: 25px;
+    padding: 12px 20px;
+    color: black;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+h1.login-title {
+    color: black;
+    margin: 0px auto 25px;
+    font-size: 25px;
+    font-weight: 300;
+    text-align: center;
+}
+.login-input {
+    font-size: 15px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+.login-input:focus {
+    border-color:black;
+    outline: none;
+}
+.login-button {
+    color: #fff;
+    background: black;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+.link {
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+.link a {
+    color: black;
+}
+h3 {
+    font-weight: normal;
+    text-align: center;
+}
+
+.cbx 
+{
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.cbx span 
+{
+    display: inline-block;
+    color: #fff;
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+}
+.cbx span:first-child
+{
+    position: relative;
+    width: 18px;
+    height: 18px;
+    background: #eec373;
+    border-radius: 3px;
+    transform: scale(1);
+    vertical-align: middle;
+    border:1px solid #eec373;
+    transition: all 0.2s ease;
+}
+.cbx span:first-child svg
+{
+    position: absolute;
+    top: 4px;
+    left: 3px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+}
+.cbx span:first-child::before
+{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: block;
+    transform: scale(0);
+    opacity: 1;
+    border-radius: 50%;
+}
+.cbx span:last-child
+{
+    padding-left: 8px;
+}
+
+.cbx:hover span:first-child
+{
+    border-color: black;
+}
+.inp-cbx:checked + .cbx span:first-child
+{
+    background: black;
+    border-color: black;
+    animation: check 0.4s ease;
+}
+
+.inp-cbx:checked + .cbx span:first-child svg
+{
+    stroke-dashoffset: 0;
+}
+
+.inp-cbx:checked + .cbx span:first-child:before
+{
+    transform: scale(3.5);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+@keyframes check
+{
+    50%
+    {
+        transform: scale(0.9);
+    }
+}
+.form-group .form-recovery
+{
+    color: black;
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.form-group button
+{
+    outline: none;
+    background: #c08619;
+    width: 100%;
+    border: 0;
+    border-radius: 25px;
+    padding: 12px 20px;
+    color: black;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 600;
+    line-height: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+button:focus
+{
+    color: #c08619;
+    background: #fff;
+}
+::placeholder
+{
+    color: rgba(255, 255, 255, 0.863);
+    font-weight: 500 !important;
+}
+.box-area
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.box-area li
+{
+    position: absolute;
+    display: block;
+    list-style: none;
+    bottom: -150px;
+    animation: animated 20s linear infinite;
+
+}
+@keyframes animated
+{
+    0%
+    {
+        transform:  translateY(0) rotate(0deg);
+    }
+    100%
+    {
+        transform:  translateY(-880px) rotate(360deg);
+    }
+}
+.box-area li:nth-child(1)
+{
+    left: 10%;
+    font-size: 20px;
+    color: #1a4657;
+    animation-delay: 0s;
+}
+.box-area li:nth-child(3)
+{
+    left: 26%;
+    font-size: 30px;
+    color: #1a4657;
+    animation-delay: 5s;
+}
+.box-area li:nth-child(5)
+{
+    left: 50%;
+    font-size: 25px;
+    color: #1a4657;
+    animation-delay: 2s;
+}
+.box-area li:nth-child(7)
+{
+    left: 60%;
+    font-size: 45px;
+    color: #1a4657;
+    animation-delay: 4.5s;
+}
+.box-area li:nth-child(9)
+{
+    left: 80%;
+    font-size: 30px;
+    color: #1a4657;
+    animation-delay: 6s;
+}
+.box-area li:nth-child(2)
+{
+    left: 90%;
+    width: 30px;
+    height: 30px;
+    background: #1a4657;
+    border-radius: 50px;
+    animation-delay: 4.5s;
+    animation-direction: 10s;
+}
+
+.box-area li:nth-child(4)
+{
+    left: 73%;
+    width: 22px;
+    height: 22px;
+    background: #1a4657;
+    border-radius: 50px;
+    animation-delay: 15s;
+}
+
+.box-area li:nth-child(6)
+{
+    left: 47%;
+    width: 21px;
+    height: 21px;
+    background: #1a4657;
+    border-radius: 50px;
+    animation-delay: 3.8s;
+}
+
+.box-area li:nth-child(8)
+{
+    left: 38%;
+    width: 25px;
+    height: 25px;
+    background: #1a4657;
+    border-radius: 50px;
+    animation-delay: 16s;
+}
+
+.box-area li:nth-child(10)
+{
+    left: 19%;
+    width: 20px;
+    height: 20px;
+    background: #1a4657;
+    border-radius: 50px;
+    animation-delay: 1.2s;
+}

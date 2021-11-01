@@ -1,0 +1,80 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+body {
+  background: #011e17;
+  font-family: "Noto Sans", "Helvetica";
+}
+
+.customAlert {
+  display: none;
+  position: fixed;
+  max-width: 25%;
+  min-width: 250px !important;
+  min-height: 20%;
+  height: 200px;
+  left: 50%;
+  top: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-left: -12.5%;
+  margin-top: -5.2%;
+  background: #088a68;
+}
+@media all and (max-width: 1300px) {
+  .customAlert .message {
+    font-size: 14px !important;
+  }
+  .customAlert input[type=button] {
+    height: 15% !important;
+  }
+}
+.customAlert .message {
+  padding: 5px;
+  color: white;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: justify;
+}
+.customAlert input[type=button] {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 50%;
+  height: 36px;
+  margin-top: -45px;
+  margin-left: -25%;
+  outline: 0;
+  border: 0;
+  background: #04b486;
+  color: white;
+}
+.customAlert input[type=button]:hover {
+  transition: 0.3s;
+  cursor: pointer;
+  background: #05cd99;
+}
+
+.rab {
+  width: 200px;
+  height: 30px;
+  outline: 0;
+  border: 0;
+  color: white;
+  background: #039b73;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

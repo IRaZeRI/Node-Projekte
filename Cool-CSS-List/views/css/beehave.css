@@ -1,0 +1,103 @@
+.hexo-map {
+    --color-base: #a4a4a6;
+    --color-active: #f5cc23;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: row wrap;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    font-size: 10vw;
+    transform: scale(1.1);
+    mix-blend-mode: overlay;
+    overflow: hidden;
+  }
+  
+  .hexo {
+    flex: none;
+    background-size: cover;
+    width: 1em;
+    height: 1em;
+    display: flex;
+    position: relative;
+    cursor: default;
+    margin-bottom: -0.15em;
+  }
+  .hexo:not(:nth-child(20n+11)):not(:nth-child(20n+12)):not(:nth-child(20n+13)):not(:nth-child(20n+14)):not(:nth-child(20n+15)):not(:nth-child(20n+16)):not(:nth-child(20n+17)):not(:nth-child(20n+18)):not(:nth-child(20n+19)):not(:nth-child(20n+20)) {
+    transform: translateX(50%);
+  }
+  .hexo:nth-child(20n-10) {
+    transform: scale(0) !important;
+  }
+  .hexo::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-base);
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+            clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    opacity: 0.3;
+    transition: transform 0.35s cubic-bezier(0.5, 0, 0.2, 1.6), background 3s ease-out, opacity 3s ease-out;
+  }
+  .hexo:hover {
+    z-index: 1;
+  }
+  .hexo:hover::after {
+    transform: scale(1.5);
+    opacity: 1;
+    background: var(--color-active);
+    transition: transform 0.35s cubic-bezier(0.5, 0, 0.2, 1.6);
+  }
+  
+  :root {
+    --mouse-x: -200;
+    --mouse-y: -200;
+  }
+  
+  .bee {
+    position: fixed;
+    top: 1em;
+    left: 1em;
+    transform: translate(calc(var(--mouse-x) * 1px), calc(var(--mouse-y) * 1px));
+    width: 1.5em;
+    height: 1.5em;
+    pointer-events: none;
+    background: repeating-radial-gradient(yellow 0, #504399 40%);
+    color: #fff;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 2;
+    border-radius: 100%;
+    will-change: transform;
+    transition: transform 150ms ease-in-out;
+    z-index: 0;
+    box-shadow: 0 0 0 0.3em rgba(255, 255, 255, 0.35), 0.8em 1.6em 2em 0 rgba(0, 0, 0, 0.8);
+  }
+  
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    font-family: sans-serif;
+    background: orangered;
+  }
+  
+  main {
+    flex: 1;
+    display: flex;
+    position: relative;
+    background: radial-gradient(ellipse at 25% 0%, gold, orangered);
+    overflow: hidden;
+  }
