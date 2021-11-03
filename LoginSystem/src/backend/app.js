@@ -12,9 +12,10 @@ const session = require("express-session");
 const passport = require("passport");
 require("./config/passport")(passport);
 require("dotenv").config();
+
 //mongoose
 mongoose
-  .connect("mongodb://localhost/beest", {
+  .connect("mongodb://localhost/local", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

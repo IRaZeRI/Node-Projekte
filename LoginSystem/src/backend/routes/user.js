@@ -1,34 +1,30 @@
-//users.js in routes/users.js
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const { v1: uuidv1, v4: uuidv4 } = require("uuid");
 //login handle
 router.get("/login", (req, res) => {
   res.render("login");
 });
-
 router.get("/register", (req, res) => {
   res.render("register");
 });
-
 //Register handle
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/dashboard",
     failureRedirect: "/users/login",
     failureFlash: true,
+  })(req, res, next);
+});
 //register post handle
 router.post("/register", (req, res) => {
   const { username, email, password, password2 } = req.body;
   let errors = [];
-  console.log(" Name " + username + " email :" + email + " pass:" + password);
   if (!username || !email || !password || !password2) {
     errors.push({ msg: "Please fill in all fields" });
   }
-
   //check if match
   if (password !== password2) {
     errors.push({ msg: "passwords dont match" });
@@ -41,16 +37,17 @@ router.post("/register", (req, res) => {
   if (errors.length > 0) {
     res.render("register", {
       errors: errors,
-      username: username,
+      userame: username,
       email: email,
       password: password,
       password2: password2,
     });
   } else {
     //validation passed
-    User.findOne({ email: email, username: username }).exec((err, user) => {
+    User.findOne({ email: email }).exec((err, user) => {
       console.log(user);
       if (user) {
+        errors.push({ msg: "email already registered" });
         res.render("register", {
           errors,
           username,
@@ -60,10 +57,9 @@ router.post("/register", (req, res) => {
         });
       } else {
         const newUser = new User({
-          id: uuidv4(),
           username: username,
           email: email,
-          rank: process.env.Member,
+          role: process.env.Member,
           password: password,
         });
 
@@ -94,5 +90,4 @@ router.get("/logout", (req, res) => {
   req.flash("success_msg", "Now logged out");
   res.redirect("/users/login");
 });
-
 module.exports = router;
